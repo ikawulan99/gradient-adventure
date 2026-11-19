@@ -2,7 +2,7 @@
 // Web config ini digunakan oleh aplikasi frontend; keamanan tetap bergantung pada
 // Firebase Authentication dan Realtime Database Security Rules.
 export const firebaseConfig = {
-  apiKey: "AIzaSyCs4egevpf9x_zDdDmNekiN2THlB2kf2Klo",
+  apiKey: "AIzaSyCs4egevpf9x_zdDmNekiN2THlB2kf2Klo",
   authDomain: "gradient-adventure.firebaseapp.com",
   databaseURL: "https://gradient-adventure-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "gradient-adventure",
