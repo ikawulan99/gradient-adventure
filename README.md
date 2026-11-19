@@ -1,31 +1,44 @@
-# Gradient Adventure — Phase 1
+# Gradient Adventure — Phase 2 (Authentication foundation)
 
-Kerangka awal aplikasi Gradient Adventure.
+## Fitur pada versi ini
+- `index.html`: halaman utama dan indikator koneksi Realtime Database.
+- `student.html`: form kode kelas/nama tampilan dan login siswa anonim.
+- `teacher.html`: form login email/password dan dashboard dengan pemeriksaan hak akses.
+- `js/firebase-config.js`: konfigurasi Firebase Web App (dipertahankan dari berkas Phase 1).
+- `js/app.js`: inisialisasi Firebase App, Authentication, Realtime Database, dan status koneksi.
+- `js/student.js`: autentikasi anonim siswa.
+- `js/teacher.js`: autentikasi email/password dan verifikasi custom claim guru.
+- `database.rules.json`: tetap default-deny.
 
-## Isi
-- `index.html`: halaman utama
-- `student.html`: kerangka halaman siswa
-- `teacher.html`: kerangka dashboard guru
-- `css/main.css`: gaya antarmuka
-- `js/firebase-config.js`: tempat konfigurasi Firebase Web App
-- `js/app.js`: pemeriksaan koneksi Firebase
-- `database.rules.json`: aturan awal default-deny
-- `docs/TECHNICAL-PLAN.md`: rancangan teknis
+## Pengaturan Firebase yang wajib dilakukan
+Di Firebase Console > Authentication > Sign-in method:
+1. Aktifkan **Anonymous** untuk siswa.
+2. Aktifkan **Email/Password** untuk guru.
+3. Buat akun guru melalui proses administrasi yang Anda kendalikan.
 
-## Menjalankan
-Karena menggunakan JavaScript ES Modules, jalankan melalui web server lokal (bukan membuka file HTML langsung). Contoh:
-`python -m http.server 8000`
-Lalu buka `http://localhost:8000`.
+### Hak akses guru
+Login email/password saja tidak otomatis membuktikan bahwa pengguna adalah guru. Dashboard memeriksa custom claim dari token Firebase:
+- `role: "teacher"`, atau
+- `isTeacher: true`, atau
+- `admin: true`.
 
-## Menghubungkan Firebase
-1. Buat Firebase Project.
-2. Buat Realtime Database.
-3. Tambahkan aplikasi Web di Project settings.
-4. Salin konfigurasi Web App ke `js/firebase-config.js`.
-5. Pertahankan database rules default-deny sampai Authentication dan aturan peran siap.
-6. Jangan menambahkan service-account key atau private key ke repository.
+Tetapkan claim tersebut hanya melalui lingkungan backend tepercaya menggunakan Firebase Admin SDK. Jangan pernah menaruh service-account key di repository atau browser. Setelah claim ditetapkan, guru perlu login ulang agar token baru diterbitkan.
+
+## Catatan penting tentang Realtime Database
+Aturan `database.rules.json` sengaja tetap menolak seluruh operasi baca/tulis. Ini mencegah data kelas dan siswa terbuka sebelum desain keamanan final diterapkan. Aplikasi memeriksa status koneksi database, tetapi belum menulis profil siswa, memvalidasi kode kelas, atau membuat sesi. Bagian tersebut memerlukan Database Rules dan/atau backend tepercaya (misalnya Cloud Functions) sesuai rancangan teknis.
+
+## Menjalankan lokal
+Karena menggunakan JavaScript ES Modules, jalankan melalui web server lokal:
+```bash
+python -m http.server 8000
+```
+Buka `http://localhost:8000`.
 
 ## GitHub Pages
-Unggah isi folder ini ke repository GitHub. Aktifkan Settings > Pages > Deploy from a branch, pilih branch utama dan folder root.
+Unggah isi folder `gradient-adventure-phase1` ke root repository `gradient-adventure`, lalu aktifkan Settings > Pages > Deploy from a branch.
 
-Catatan: halaman saat ini adalah scaffold Tahap 1, belum merupakan game multiplayer yang selesai.
+## Keamanan
+- Jangan mengubah database rules menjadi `.read: true` atau `.write: true`.
+- Jangan menyimpan password guru di kode.
+- Firebase Web config memang berada di frontend; keamanan data harus ditegakkan melalui Authentication, Rules, dan backend tepercaya.
+- Fitur multiplayer, validasi kode kelas, kontrol sesi, dan penyimpanan progres belum termasuk dalam versi ini.

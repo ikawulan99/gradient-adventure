@@ -7,14 +7,13 @@
 <body>
   <main class="page">
     <a class="back" href="./index.html">← Beranda</a>
-    <header><p class="eyebrow">AREA PEMAIN</p><h1>Masuk sebagai siswa</h1><p>Halaman ini akan menjadi pintu masuk siswa ke ruang permainan kelas.</p></header>
+    <header><p class="eyebrow">AREA PEMAIN</p><h1>Masuk sebagai siswa</h1><p>Masukkan kode kelas dan nama tampilan untuk membuat identitas pemain.</p></header>
     <section class="panel">
-      <label for="class-code">Kode kelas</label><input id="class-code" autocomplete="off" placeholder="Contoh: GRAD8A">
-      <label for="student-name">Nama tampilan</label><input id="student-name" autocomplete="name" placeholder="Nama siswa">
+      <label for="class-code">Kode kelas</label><input id="class-code" autocomplete="off" maxlength="20" placeholder="Contoh: GRAD8A">
+      <label for="student-name">Nama tampilan</label><input id="student-name" autocomplete="name" maxlength="40" placeholder="Nama siswa">
       <button class="button primary" id="student-continue" type="button">Lanjutkan</button>
-      <p class="note" id="student-message">Fitur login dan bergabung ke sesi akan dibuat pada Tahap 2.</p>
+      <p class="note" id="student-message" aria-live="polite">Siswa masuk menggunakan autentikasi anonim. Tidak perlu membuat akun email.</p>
     </section>
   </main>
-  <script type="module" src="./js/firebase-config.js"></script>
   <script type="module" src="./js/student.js"></script>
 </body></html>

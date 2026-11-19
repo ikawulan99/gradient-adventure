@@ -7,17 +7,36 @@
 <body>
   <main class="page">
     <a class="back" href="./index.html">← Beranda</a>
-    <header><p class="eyebrow">PANEL PENGELOLA</p><h1>Teacher Dashboard</h1><p>Kontrol permainan dan pemantauan pembelajaran.</p></header>
-    <section class="stats">
-      <article class="stat"><strong>40</strong><span>Target pemain/kelas</span></article>
-      <article class="stat"><strong>—</strong><span>Siswa bergabung</span></article>
-      <article class="stat"><strong>—</strong><span>Status sesi</span></article>
+    <header><p class="eyebrow">PANEL PENGELOLA</p><h1>Teacher Dashboard</h1><p>Masuk menggunakan akun guru yang telah didaftarkan oleh administrator.</p></header>
+
+    <section class="panel" id="teacher-login-panel">
+      <h2>Login guru</h2>
+      <form id="teacher-login-form">
+        <label for="teacher-email">Email</label>
+        <input id="teacher-email" type="email" autocomplete="username" required placeholder="nama@sekolah.sch.id">
+        <label for="teacher-password">Password</label>
+        <input id="teacher-password" type="password" autocomplete="current-password" required placeholder="Password akun guru">
+        <button class="button primary" id="teacher-login" type="submit">Masuk</button>
+      </form>
+      <p class="note" id="teacher-message" aria-live="polite">Akses dashboard memerlukan akun dengan hak guru yang telah diverifikasi.</p>
     </section>
-    <section class="panel">
-      <h2>Kontrol sesi</h2>
-      <p>Kontrol START, PAUSE, RESUME, dan STOP akan diaktifkan setelah autentikasi serta aturan akses Firebase selesai dikonfigurasi.</p>
-      <div class="actions"><button class="button primary" disabled>Mulai permainan</button><button class="button secondary" disabled>Jeda</button></div>
-      <p class="note">Dashboard ini masih berupa kerangka antarmuka pada Tahap 1.</p>
+
+    <section id="teacher-dashboard" hidden>
+      <section class="stats">
+        <article class="stat"><strong>40</strong><span>Target pemain/kelas</span></article>
+        <article class="stat"><strong>—</strong><span>Siswa bergabung</span></article>
+        <article class="stat"><strong>—</strong><span>Status sesi</span></article>
+      </section>
+      <section class="panel">
+        <div class="actions" style="justify-content:space-between;align-items:center;margin-top:0">
+          <h2>Kontrol sesi</h2>
+          <button class="button secondary" id="teacher-logout" type="button">Keluar</button>
+        </div>
+        <p>Autentikasi guru berhasil dan hak akses guru telah diverifikasi.</p>
+        <div class="actions"><button class="button primary" disabled>Mulai permainan</button><button class="button secondary" disabled>Jeda</button></div>
+        <p class="note">Kontrol permainan akan diaktifkan pada tahap pengembangan sesi multiplayer.</p>
+      </section>
     </section>
   </main>
+  <script type="module" src="./js/teacher.js"></script>
 </body></html>
