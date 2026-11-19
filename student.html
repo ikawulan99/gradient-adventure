@@ -1,19 +1,53 @@
+
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Game Siswa | Gradient Adventure</title><link rel="stylesheet" href="./css/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Siswa | Gradient Adventure</title>
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
   <main class="page">
     <a class="back" href="./index.html">← Beranda</a>
-    <header><p class="eyebrow">AREA PEMAIN</p><h1>Masuk sebagai siswa</h1><p>Masukkan kode kelas dan nama tampilan untuk membuat identitas pemain.</p></header>
+
+    <header>
+      <p class="eyebrow">AREA PEMAIN</p>
+      <h1>Masuk sebagai siswa</h1>
+      <p>Masukkan kode kelas dan nama tampilan untuk membuat identitas pemain.</p>
+    </header>
+
     <section class="panel">
-      <label for="class-code">Kode kelas</label><input id="class-code" autocomplete="off" maxlength="20" placeholder="Contoh: GRAD8A">
-      <label for="student-name">Nama tampilan</label><input id="student-name" autocomplete="name" maxlength="40" placeholder="Nama siswa">
-      <button class="button primary" id="student-continue" type="button">Lanjutkan</button>
-      <p class="note" id="student-message" aria-live="polite">Siswa masuk menggunakan autentikasi anonim. Tidak perlu membuat akun email.</p>
+      <label for="class-code">Kode kelas</label>
+      <input
+        id="class-code"
+        type="text"
+        autocomplete="off"
+        maxlength="20"
+        required
+        placeholder="Contoh: GRAD8A"
+      >
+
+      <label for="student-name">Nama tampilan</label>
+      <input
+        id="student-name"
+        type="text"
+        autocomplete="name"
+        maxlength="40"
+        required
+        placeholder="Nama siswa"
+      >
+
+      <button class="button primary" id="student-continue" type="button">
+        Lanjutkan
+      </button>
+
+      <p class="note" id="student-message" aria-live="polite">
+        Siswa masuk menggunakan autentikasi anonim. Tidak perlu membuat akun email.
+      </p>
     </section>
   </main>
+
   <script type="module" src="./js/student.js"></script>
-</body></html>
+</body>
+</html>
